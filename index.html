@@ -1,13 +1,22 @@
 <!DOCTYPE html>
-<html>
-<head><title>Cookies</title></head>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cookies</title>
+</head>
 <body>
-  <h1>Cookies</h1>
-  <pre id="data"></pre>
   <script>
     fetch('./cookies.json')
-      .then(r => r.json())
-      .then(d => document.getElementById('data').textContent = JSON.stringify(d, null, 2));
+      .then(res => res.json())
+      .then(data => {
+        const cookies = Object.entries(data);
+        cookies.forEach(([name, value]) => {
+          document.cookie = `${name}=${value}; path=/`;
+        });
+        console.log('Cookies set successfully');
+      })
+      .catch(err => console.error('Failed to load cookies:', err));
   </script>
 </body>
 </html>
