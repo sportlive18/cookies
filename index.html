@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head><title>Cookies</title></head>
+<body>
+  <h1>Cookies</h1>
+  <pre id="data"></pre>
+  <script>
+    fetch('./cookies.json')
+      .then(r => r.json())
+      .then(d => document.getElementById('data').textContent = JSON.stringify(d, null, 2));
+  </script>
+</body>
+</html>
